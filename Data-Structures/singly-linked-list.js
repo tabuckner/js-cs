@@ -67,6 +67,15 @@ class SinglyLinkedList {
     return this;
   }
 
+  get(index) {
+    if (index < 0 || index >= this.length) return undefined;
+    let currentNode = this.head;
+    for (let i = 0; i < index; i++) {
+      currentNode = currentNode.next;
+    }
+    return currentNode.val;
+  }
+
   _resetHeadAndTail() {
     this.head = null;
     this.tail = null;
@@ -80,10 +89,6 @@ class SinglyLinkedList {
 
 let list = new SinglyLinkedList();
 list.push(1);
-console.log(list);
 list.push(2);
-console.log(list);
 list.push(3);
-console.log(list);
-console.log(list.pop())
-console.log(list);
+console.log(list.get(2));
