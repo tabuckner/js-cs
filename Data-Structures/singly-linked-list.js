@@ -7,20 +7,21 @@ class Node {
 
 class SinglyLinkedList {
   constructor() {
-    this.resetHeadAndTail();
+    this._resetHeadAndTail();
     this.length = 0;
   }
 
   push(val) {
     const newNode = new Node(val)
     if (!this.head) {
-      this.head = newNode;
-      return this.tail = newNode;
+      this._setHeadAndTail(newNode);
+      this.length++;
+      return this;
     }
+
     this.tail.next = newNode;
     this.tail = newNode;
     this.length++;
-
     return this;
   }
 
@@ -37,14 +38,43 @@ class SinglyLinkedList {
     newTail.next = null;
     this.length--;
     if (this.length === 0) {
-      this.resetHeadAndTail();
+      this._resetHeadAndTail();
     }
     return current;
   }
 
-  resetHeadAndTail() {
+  shift() {
+    if (!this.head) return undefined;
+    const returnNode = this.head;
+    this.head = returnHead.next;
+    this.length--;
+    if (this.length === 0) {
+      this._resetHeadAndTail();
+    }
+    return returnNode;
+  }
+
+  unshift(val) {
+    const newNode = new Node(val)
+    if (!this.head) {
+      this._setHeadAndTail(newNode)
+      this.length++;
+      return this;
+    }
+    newNode.next = this.head;
+    this.head = newNode;
+    this.length++;
+    return this;
+  }
+
+  _resetHeadAndTail() {
     this.head = null;
     this.tail = null;
+  }
+
+  _setHeadAndTail(val) {
+    this.head = val;
+    this.tail = val;
   }
 }
 
