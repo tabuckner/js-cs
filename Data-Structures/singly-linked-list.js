@@ -76,6 +76,13 @@ class SinglyLinkedList {
     return currentNode.val;
   }
 
+  set(index, value) {
+    const targetNode = this.get(index);
+    if (!targetNode) return false;
+    targetNode.val = value;
+    return true;
+  }
+
   _resetHeadAndTail() {
     this.head = null;
     this.tail = null;
